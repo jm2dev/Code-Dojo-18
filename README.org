@@ -8,8 +8,8 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 
 ** Run tests
 
-#+begin_src bash
+#+BEGIN_SRC bash
 make build
 
 open index.html
-#+end_src
+#+END_SRC
