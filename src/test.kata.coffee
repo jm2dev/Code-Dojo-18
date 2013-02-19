@@ -1,24 +1,65 @@
 chai.should()
 
-describe 'A test suite', ->
-  describe 'A string of fifteen letters', ->
-    myString = "Now is the time"
+myGraph = 
+  nodes: [],
+  lengz: -> @nodes.length
 
-    it 'should be of type string', ->
-      myString.should.be.a 'string'
+nodeA = 
+  value: "A",
+  children: [nodeB]
 
-    it 'should have a length of 15', ->
-      myString.should.have.length 15
-      
-  describe 'An array of three items', ->
-    array = [1, 2, 3]
+nodeB =
+  value: "B",
+  children: [nodeA]
 
-    it 'should be of type array', ->
-      array.should.be.a 'array'
+oneNodeGraph = 
+  nodes: [nodeA],
+  lengz: -> @nodes.length
+  
+twoNodesGraph = 
+  nodes: [nodeA, nodeB],
+  lengz: -> @nodes.length
 
-    it 'should have a length of 3', ->
-      array.should.have.length 3
+describe 'A graph', ->
 
-    it 'should return -1 when a searched for item is not present', ->
-      array.indexOf(4).should.equal -1
+  describe 'A graph of zero nodes', ->
+           
+    it 'should have length zero', ->        
+      myGraph.lengz().should.equal 0
 
+    it 'should have no nodes', ->
+      myGraph.nodes.length.should.equal 0
+ 
+  describe 'A graph of one nodes', ->
+
+    it 'should have length one', ->        
+      oneNodeGraph.lengz().should.equal 1
+
+    it 'should have one node', ->
+      oneNodeGraph.nodes.length.should.equal 1
+
+  describe 'A graph of two nodes', ->    
+
+    it 'should have one children', ->
+      nodeA.children.length.should.equal 1
+
+    it 'should have one children', ->
+      nodeB.children.length.should.equal 1
+ 
+    it 'should have two nodes', ->
+      twoNodesGraph.lengz().should.equal 2
+
+  describe 'A node', ->
+    node = 
+      value: "label",
+      children: []
+
+    it 'should have a value', ->
+      node.value.should.equal "label"
+
+    it 'should have zero children', ->
+      node.children.length.should.equal 0
+
+
+
+    
